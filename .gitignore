@@ -4,6 +4,9 @@
 .settings
 .project
 
+#folder
+bin
+
 # Log file
 *.log
 
