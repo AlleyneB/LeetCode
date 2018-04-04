@@ -2,32 +2,41 @@ package leetCode.pro8;
 
 public class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-    	int num1 = list2Int(l1);
-    	int num2 = list2Int(l2);
-    	int sum = num1 + num2;
-		return int2List(sum);
-    }
-
-	public ListNode int2List(int sum) {
-		ListNode head = new ListNode(0);
-		ListNode temp = head;
-		String string = Integer.toString(sum);
-		for(int i=string.length()-1; i>=0; i--) {
-			int digit = Integer.parseInt(string.substring(i, i+1));
-			temp.next = new ListNode(digit);
-			temp = temp.next;
-		}
-		return head.next;
-	}
-
-	public int list2Int(ListNode l) {
-		StringBuilder sBuilder = new StringBuilder();
-		ListNode nextNode = l;
-		sBuilder.append(nextNode.val);
-		while(nextNode.next != null) {
-			nextNode = nextNode.next;
-			sBuilder.append(nextNode.val);
-		}
-		return Integer.parseInt(sBuilder.reverse().toString());
+    	//保存结果的起始节点
+    	ListNode head = new ListNode(0);
+    	//循环用临时节点
+    	ListNode temp = head;
+    	int x = l1.val;
+    	int y = l2.val;
+    	//和
+    	int sum = x + y ;
+    	//进位
+    	int ca = sum/10;
+    	//个数部分
+    	int dig = sum%10;
+    	head.val = dig;
+    	while((l1.next != null) || (l2.next != null)) {
+    		if (l1.next != null) {
+				l1 = l1.next;
+				x = l1.val;
+			}else {
+				x = 0;
+			}
+    		if (l2.next != null) {
+    			l2 = l2.next;
+    			y = l2.val;
+    		}else {
+				y = 0;
+			}
+    		sum = x + y + ca;
+    		ca = sum/10;
+    		dig = sum%10;
+    		temp.next = new ListNode(dig);
+    		temp = temp.next;
+    	}
+    	if(ca != 0) {
+    		temp.next = new ListNode(ca);
+    	}
+		return head;
 	}
 }
