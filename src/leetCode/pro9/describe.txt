@@ -1,0 +1,26 @@
+738. Monotone Increasing Digits
+
+
+
+Given a non-negative integer N, find the largest number that is less than or equal to N with monotone increasing digits.
+
+(Recall that an integer has monotone increasing digits if and only if each pair of adjacent digits x and y satisfy x <= y.)
+
+Example 1:
+Input: N = 10
+Output: 9
+Example 2:
+Input: N = 1234
+Output: 1234
+Example 3:
+Input: N = 332
+Output: 299
+Note: N is an integer in the range [0, 10^9]
+
+67000  1111112
+
+思路：从最高位开始，判断（下一位数字是否大于等于该位数字），
+          是的话继续判断下一位的数字，直到有一个数字的下一位小于该位或全部位判断完，
+          若有一个数字不满足判断条件，则结果中这一位的数字应该为该位数字减一，后面全部为9，
+          再判断减一后前面数字是不是大于它，若是则前面数字也要减一，该位置9，再继续朝前判断。
+          若全部符合判断条件，则结果为原数。
