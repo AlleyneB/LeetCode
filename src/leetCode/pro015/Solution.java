@@ -12,6 +12,7 @@ class Solution {
     			if(check(sortedWords[i],sortedWords[j])) {
     				int temp = sortedWords[i].length()*sortedWords[j].length();
     				result = (temp>result?temp:result);
+    				break;
     			}
     		}
     	}
